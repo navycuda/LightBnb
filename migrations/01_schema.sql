@@ -26,3 +26,7 @@ CREATE TABLE
     guest_id INTEGER REFERENCES
       users(id) ON DELETE CASCADE,
   );
+CREATE TABLE
+  property_reviews (
+    id INTEGER PRIMARY KEY NOT NULL
+  )
