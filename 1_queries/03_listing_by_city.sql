@@ -5,7 +5,7 @@ SELECT
   properties.id AS id,
   properties.title AS title,
   properties.cost_per_night AS cost_per_night,
-  avg(property_reviews.average_rating) AS average_rating
+  avg(property_reviews.rating) AS average_rating
 FROM
   properties
 JOIN
