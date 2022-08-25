@@ -1,6 +1,5 @@
 /*
 \i 1_queries/03_listing_by_city.sql
-*/
 SELECT
   properties.id AS id,
   properties.title AS title,
@@ -16,3 +15,5 @@ GROUP BY
 ORDER BY
   properties.id
 ;
+*/
+
