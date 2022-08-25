@@ -3,10 +3,10 @@ const users = require('./json/users.json');
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  user: 'username',
+  user: 'navycuda',
   password: '123',
   host: 'localhost',
-  database: 'database'
+  database: 'lightbnb'
 });
 
 /// Users
