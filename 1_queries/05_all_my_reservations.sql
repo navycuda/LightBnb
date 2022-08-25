@@ -17,7 +17,7 @@ JOIN
   ON properties.id = property_reviews.property_id
 JOIN
   users
-  ON reservations.user_id = users.id
+  ON reservations.guest_id = users.id
 WHERE
   users.id = 1017016
 GROUP BY
