@@ -9,6 +9,16 @@ const pool = new Pool({
   database: 'lightbnb'
 });
 
+const query = `
+
+`;
+
+pool.query(query)
+  .then((response) => {
+    console.log(response);
+  });
+
+
 /// Users
 
 /**
@@ -77,7 +87,13 @@ exports.getAllReservations = getAllReservations;
 const getAllProperties = function(options, limit = 10) {
   pool
     .query(`
-    
+      SELECT
+        *
+      FROM
+        properties
+      LIMIT
+        10
+      ;
     `,
     []
     )
