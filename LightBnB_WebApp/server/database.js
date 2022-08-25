@@ -209,8 +209,17 @@ const getAllProperties = function(options, limit = 10) {
   }
 
 
-
-
+  // Last variable to be attached
+  vars.push(limit);
+  query += `
+    GROUP BY
+      properties.id
+    ORDER BY
+      cost_per_night
+    LIMIT
+      $${vars.length}
+    ;
+  `;
 
   return pool
     .query(query, vars)
