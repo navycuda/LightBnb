@@ -27,16 +27,36 @@ pool.query(query)
  * @return {Promise<{}>} A promise to the user.
  */
 const getUserWithEmail = function(email) {
-  let user;
-  for (const userId in users) {
-    user = users[userId];
-    if (user.email.toLowerCase() === email.toLowerCase()) {
-      break;
-    } else {
-      user = null;
-    }
-  }
-  return Promise.resolve(user);
+  // let user;
+  // for (const userId in users) {
+  //   user = users[userId];
+  //   if (user.email.toLowerCase() === email.toLowerCase()) {
+  //     break;
+  //   } else {
+  //     user = null;
+  //   }
+  // }
+  // return Promise.resolve(user);
+
+  return pool
+    .query(`
+      SELECT
+        *
+      FROM
+        users
+      WHERE
+        $1 = users.email
+      ;
+    `,
+    [ email ]
+    )
+    .then((result) => {
+      console.log(`getUserWithEmail() error: `, result.rows);
+      return result.rows;
+    })
+    .catch((error) => {
+      console.error(`getUserWithEmail() error: `, error.message);
+    });
 };
 exports.getUserWithEmail = getUserWithEmail;
 
