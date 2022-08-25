@@ -49,7 +49,26 @@ getUserWithEmail('asherpoole@gmx.com');
  * @return {Promise<{}>} A promise to the user.
  */
 const getUserWithId = function(id) {
-  return Promise.resolve(users[id]);
+  pool
+    .query(`
+      SELECT
+        *
+      FROM
+        users
+      WHERE
+        $1 = users.id
+      ;
+    `,
+    [ id ]
+    )
+    .then((result) => {
+      const rows = result.rows;
+      console.log(`getUserWithEmail() result: `, rows);
+      return rows.length > 0 ? rows : null;
+    })
+    .catch((error) => {
+      console.log('getUserWithEmail() null', error.message);
+    });
 };
 exports.getUserWithId = getUserWithId;
 
