@@ -2,10 +2,10 @@
 \i 1_queries/03_listing_by_city.sql
 */
 SELECT
-  properties.id,
-  properties.title,
-  properties.cost_per_night,
-  properties.average_rating
+  properties.id AS id,
+  properties.title AS title,
+  properties.cost_per_night AS cost_per_night,
+  property_reviews.average_rating AS average_rating
 FROM
   properties
 JOIN
