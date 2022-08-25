@@ -55,7 +55,7 @@ const getUserWithEmail = function(email) {
       return result.rows;
     })
     .catch((error) => {
-      console.error(`getUserWithEmail() error: `, error.message);
+      return null;
     });
 };
 exports.getUserWithEmail = getUserWithEmail;
