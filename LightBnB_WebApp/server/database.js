@@ -207,6 +207,13 @@ const getAllProperties = function(options, limit = 10) {
         LIKE $${vars.length}
     `;
   }
+  if (options.owner_id) {
+    vars.push(options.owner_id);
+    query += `
+      WHERE
+        owner_id = $${vars.length}
+    `;
+  }
 
 
   // Last variable to be attached
