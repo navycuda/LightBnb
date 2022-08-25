@@ -25,6 +25,10 @@ const getUserWithEmail = function(email) {
         users
       WHERE
         $1 = users.email
+      ORDER BY
+        users.id
+      LIMIT
+        1
       ;
     `,
     [ email ]
@@ -56,7 +60,7 @@ const getUserWithId = function(id) {
         $1 = users.id
       ;
     `,
-    [ id ]
+    [ Number(id) ]
     )
     .then((result) => {
       const rows = result.rows;
