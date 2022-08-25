@@ -35,8 +35,7 @@ const getUserWithEmail = function(email) {
     )
     .then((result) => {
       const rows = result.rows;
-      console.log(`getUserWithEmail() result: `, rows);
-      return rows.length > 0 ? rows : null;
+      return rows.length > 0 ? rows[0] : null;
     })
     .catch((error) => {
       console.log('getUserWithEmail() null', error.message);
@@ -64,8 +63,7 @@ const getUserWithId = function(id) {
     )
     .then((result) => {
       const rows = result.rows;
-      console.log(`getUserWithEmail() result: `, rows);
-      return rows.length > 0 ? rows : null;
+      return rows.length > 0 ? rows[0] : null;
     })
     .catch((error) => {
       console.log('getUserWithEmail() null', error.message);
