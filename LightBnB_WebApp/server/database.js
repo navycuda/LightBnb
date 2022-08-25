@@ -9,22 +9,6 @@ const pool = new Pool({
   database: 'lightbnb'
 });
 
-const query = `
-  SELECT
-    title
-  FROM
-    properties
-  LIMIT
-    10
-  ;
-`;
-
-pool.query(query)
-  .then((response) => {
-    console.log(response);
-  });
-
-
 /// Users
 
 /**
