@@ -99,7 +99,7 @@ const addUser =  function(user) {
   const vars = [ user.name, user.email, user.password ];
 
   return pool
-    .query(query, query)
+    .query(query, vars)
     .then((user) => {
       console.log(user.rows);
     })
