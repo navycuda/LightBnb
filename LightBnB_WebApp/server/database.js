@@ -92,10 +92,10 @@ const getAllProperties = function(options, limit = 10) {
       FROM
         properties
       LIMIT
-        10
+        $1
       ;
     `,
-    []
+    [ limit ]
     )
     .then((result) => {
       return result.rows;
