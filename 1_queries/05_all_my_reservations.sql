@@ -21,5 +21,5 @@ JOIN
 WHERE
   users.id = 1017016
 GROUP BY
-  properties.title
+  reservations.id
 ;
