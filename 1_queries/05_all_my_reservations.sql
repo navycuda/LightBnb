@@ -1,6 +1,5 @@
 /*
 \i 1_queries/05_all_my_reservations.sql
-*/
 SELECT
   reservations.id,
   properties.title,
@@ -25,3 +24,4 @@ GROUP BY
   properties.title,
   properties.cost_per_night
 ;
+*/
