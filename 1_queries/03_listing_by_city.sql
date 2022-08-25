@@ -6,3 +6,9 @@ SELECT
   properties.title,
   properties.cost_per_night,
   properties.average_rating
+FROM
+  properties
+JOIN
+  property_reviews
+  ON properties.id = property_reviews.property_id
+;
