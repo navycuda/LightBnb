@@ -13,4 +13,5 @@ GROUP BY
   properties.city
 ORDER BY
   total_reservations
+  DESC
 ;
