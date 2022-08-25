@@ -9,16 +9,6 @@ const pool = new Pool({
   database: 'lightbnb'
 });
 
-const query = `
-
-`;
-
-pool.query(query)
-  .then((response) => {
-    console.log(response);
-  });
-
-
 /// Users
 
 /**
