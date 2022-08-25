@@ -21,5 +21,7 @@ JOIN
 WHERE
   users.id = 1017016
 GROUP BY
-  reservations.id
+  reservations.id,
+  properties.title,
+  properties.cost_per_night
 ;
