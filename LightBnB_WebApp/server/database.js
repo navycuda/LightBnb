@@ -51,14 +51,18 @@ const getUserWithEmail = function(email) {
     [ email ]
     )
     .then((result) => {
-      console.log(`getUserWithEmail() error: `, result.rows);
-      return result.rows;
+      const rows = result.rows;
+      console.log(`getUserWithEmail() result: `, rows);
+      return rows.length > 0 ? rows : null;
     })
     .catch((error) => {
-      return null;
+      console.log('getUserWithEmail() null', error.message);
     });
 };
 exports.getUserWithEmail = getUserWithEmail;
+
+getUserWithEmail('navycuda@hotmail.com');
+getUserWithEmail('asherpoole@gmx.com');
 
 /**
  * Get a single user from the database given their id.
