@@ -76,10 +76,6 @@ exports.getUserWithId = getUserWithId;
  * @return {Promise<{}>} A promise to the user.
  */
 const addUser =  function(user) {
-  const userId = Object.keys(users).length + 1;
-  user.id = userId;
-  users[userId] = user;
-
   const query = `
     INSERT INTO
       users (
@@ -106,12 +102,6 @@ const addUser =  function(user) {
     .catch((error) => {
       console.log('error', error.message);
     });
-  
-  
-  
-  
-  
-  // return Promise.resolve(user);
 };
 exports.addUser = addUser;
 
