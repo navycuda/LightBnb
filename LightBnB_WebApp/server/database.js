@@ -187,6 +187,13 @@ const getAllProperties = function(options, limit = 10) {
   // LIMIT
   //   10
   // ;
+  // {
+  //   city,
+  //   owner_id,
+  //   minimum_price_per_night,
+  //   maximum_price_per_night,
+  //   minimum_rating;
+  // }
   const vars = [];
   // Setup base query
   let query = `
@@ -214,6 +221,16 @@ const getAllProperties = function(options, limit = 10) {
         owner_id = $${vars.length}
     `;
   }
+  // Set minimum price
+  if (options.minimum_price_per_night) {
+    vars.push(options.minimum_price_per_night);
+    query += `
+      WHERE
+        properties.cost_per_night > $${vars.length}
+    `;
+  }
+  // Set maximum price
+
 
 
   // Last variable to be attached
