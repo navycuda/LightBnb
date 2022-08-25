@@ -187,11 +187,26 @@ const getAllProperties = function(options, limit = 10) {
   // LIMIT
   //   10
   // ;
-  const query = `
-  
-  `;
   const vars = [];
-
+  // Setup base query
+  let query = `
+    SELECT
+      properties.*,
+      avg(property_reviews.rating) AS average_rating
+    FROM
+      properties
+    JOIN
+      property_reviews ON properties.id = property_id
+  `;
+  // Filter by city
+  if (options.city) {
+    vars.push(`%${options.city}%`);
+    query += `
+      WHERE
+        properties.city
+        LIKE $${vars.length}
+    `;
+  }
 
 
 
