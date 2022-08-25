@@ -3,7 +3,7 @@
 */
 SELECT
   properties.city,
-  count(reservations)
+  count(reservations) AS total_reservations
 FROM
   properties
 JOIN
@@ -12,5 +12,5 @@ JOIN
 GROUP BY
   properties.city
 ORDER BY
-  properties.city
+  total_reservations
 ;
