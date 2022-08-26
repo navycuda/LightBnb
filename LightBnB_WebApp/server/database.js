@@ -239,7 +239,13 @@ const getAllProperties = function(options, limit = 10) {
     `;
   }
   // Set maximum price
-
+  if (options.maximum_price_per_night) {
+    vars.push(options.maximum_price_per_night);
+    query += `
+      ${addWHERE()}
+        properties.cost_per_night < $${vars.length}
+    `;
+  }
 
 
   // Last variable to be attached
