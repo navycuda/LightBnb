@@ -209,7 +209,7 @@ const getAllProperties = function(options, limit = 10) {
   const addWHERE = () => {
     if (!hasWhere) {
       hasWhere = true;
-      return 'AND';
+      return 'WHERE';
     }
     return 'AND';
   };
