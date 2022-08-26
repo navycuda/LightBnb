@@ -312,8 +312,17 @@ const addProperty = function(p) {
       $12,
       $13
     )
+    RETURNING
+      *
     ;
   `;
-  return Promise.resolve(property);
+  return pool
+    .query(query, vars)
+    .then((result) => {
+      return result.rows[0];
+    })
+    .catch((error) => {
+      console.error(`getAllProperties() error: `, error.message);
+    });
 };
 exports.addProperty = addProperty;
