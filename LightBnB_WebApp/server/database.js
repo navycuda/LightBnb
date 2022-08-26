@@ -271,6 +271,7 @@ const addProperty = function(p) {
     p.description,
     p.thumbnail_photo_url,
     p.cover_photo_url,
+    p.cost_per_night,
     p.parking_spaces,
     p.number_of_bathrooms,
     p.number_of_bedrooms,
@@ -280,7 +281,7 @@ const addProperty = function(p) {
     p.province,
     p.post_code,
   ];
-  const query = `
+  let query = `
     INSERT INTO
       properties (
         owner_id,
@@ -288,6 +289,7 @@ const addProperty = function(p) {
         description,
         thumbnail_photo_url,
         cover_photo_url,
+        cost_per_night,
         parking_spaces,
         number_of_bathrooms,
         number_of_bedrooms,
@@ -297,25 +299,26 @@ const addProperty = function(p) {
         province,
         post_code
       )
-    VALUES (
-      $1,
-      $2,
-      $3,
-      $4,
-      $5,
-      $6,
-      $7,
-      $8,
-      $9,
-      $10,
-      $11,
-      $12,
-      $13
-    )
+    VALUES
+  `;
+
+  for (let v = 0; v < vars.length; v++) {
+    const i = v + 1;
+    if (i === 1) {
+      query += `( $${i},`;
+    } else if (i === vars.length) {
+      query += ` $${i} )`;
+    } else {
+      query += ` $${i},`;
+    }
+  }
+        
+  query += `
     RETURNING
       *
     ;
   `;
+
   return pool
     .query(query, vars)
     .then((result) => {
