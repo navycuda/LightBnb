@@ -205,11 +205,20 @@ const getAllProperties = function(options, limit = 10) {
     JOIN
       property_reviews ON properties.id = property_id
   `;
+  const hasWhere = false;
+  const addWHERE = () => {
+    if (!hasWhere) {
+      hasWhere = true;
+      return 'WHERE';
+    }
+    return 'AND';
+  };
+
   // Filter by city
   if (options.city) {
     vars.push(`%${options.city}%`);
     query += `
-      WHERE
+      ${addWHERE()}
         properties.city
         LIKE $${vars.length}
     `;
@@ -217,7 +226,7 @@ const getAllProperties = function(options, limit = 10) {
   if (options.owner_id) {
     vars.push(options.owner_id);
     query += `
-      WHERE
+      ${addWHERE()}
         owner_id = $${vars.length}
     `;
   }
@@ -225,7 +234,7 @@ const getAllProperties = function(options, limit = 10) {
   if (options.minimum_price_per_night) {
     vars.push(options.minimum_price_per_night);
     query += `
-      WHERE
+      ${addWHERE()}
         properties.cost_per_night > $${vars.length}
     `;
   }
