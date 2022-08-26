@@ -205,7 +205,7 @@ const getAllProperties = function(options, limit = 10) {
     JOIN
       property_reviews ON properties.id = property_id
   `;
-  const hasWhere = false;
+  let hasWhere = false;
   const addWHERE = () => {
     if (!hasWhere) {
       hasWhere = true;
@@ -246,8 +246,21 @@ const getAllProperties = function(options, limit = 10) {
         properties.cost_per_night < $${vars.length}
     `;
   }
-
-
+  // Set minimum rating
+  if (options.minimum_rating) {
+    vars.push(options.minimum_rating);
+    query += `
+      ${addWHERE()}
+        $${vars.length} < (
+          SELECT
+            avg(rating)
+          FROM
+            property_reviews
+          WHERE
+            property_reviews.property_id = properties.id
+        )
+    `;
+  }
   // Last variable to be attached
   vars.push(limit);
   query += `
